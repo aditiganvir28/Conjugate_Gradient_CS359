@@ -1,7 +1,6 @@
 //g++ tester.cpp -fopenmp -std=c++1z
 //requires c++ 17
-#include "my_library.hpp"
-#include "my_testing_library.hpp"
+#include "parallel.cpp"
 std::string GetCurrentTimeForFileName()
 {
     auto time = std::time(nullptr);
@@ -33,44 +32,7 @@ int main()
             }
         }
     }
-
-    {
-        std::ofstream output("sparse_pd_4_5000_testing_results" + GetCurrentTimeForFileName() + ".txt");
-        for (int psd = 1; psd < 2; psd++)
-        {
-            for (int num_threads = 4; num_threads < 5; num_threads++)
-            {
-                for (int size = 5000; size <= 5000; size += 100)
-                {
-                    for (double sparse_proportion = 0.1; sparse_proportion < 1; sparse_proportion += 0.1)
-                    {
-                        auto [avg, std_dev] = tester(size, psd, num_threads, 100, false, 10, sparse_proportion);
-                        output << psd << " " << num_threads << " " << size << " " << sparse_proportion << " " << avg << " " << std_dev << endl;
-                        cout << psd << " " << num_threads << " " << size << " " << sparse_proportion << " " << avg << " " << std_dev << endl;
-                    }
-                }
-            }
-        }
-    }
-
-    {
-        std::ofstream output("sparse_npd_4_1000_testing_results" + GetCurrentTimeForFileName() + ".txt");
-        for (int psd = 0; psd < 1; psd++)
-        {
-            for (int num_threads = 4; num_threads < 5; num_threads++)
-            {
-                for (int size = 1000; size <= 1000; size += 100)
-                {
-                    for (double sparse_proportion = 0.1; sparse_proportion < 1; sparse_proportion += 0.1)
-                    {
-                        auto [avg, std_dev] = tester(size, psd, num_threads, 100, false, 10, sparse_proportion);
-                        output << psd << " " << num_threads << " " << size << " " << sparse_proportion << " " << avg << " " << std_dev << endl;
-                        cout << psd << " " << num_threads << " " << size << " " << sparse_proportion << " " << avg << " " << std_dev << endl;
-                    }
-                }
-            }
-        }
-    }
+   
 
     {
         std::ofstream output("size_pd_4_testing_results" + GetCurrentTimeForFileName() + ".txt");

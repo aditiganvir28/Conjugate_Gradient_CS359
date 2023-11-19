@@ -1,7 +1,3 @@
-/* Include guard*/
-#ifndef LINEARALG_INCLUDED
-#define LINEARALG_INCLUDED
-
 #include <bits/stdc++.h>
 #include <omp.h>
 using namespace std;
@@ -352,5 +348,3 @@ vector<double> solver_parallel(vector<double> &A, vector<int> &iA, vector<int> &
 
     return x_out;
 }
-
-#endif /* Include guard*/

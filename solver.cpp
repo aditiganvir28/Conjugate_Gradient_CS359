@@ -1,5 +1,5 @@
-#include "my_library.hpp"
-#include "my_library_sequential.hpp"
+#include "parallel.cpp"
+#include "sequential.cpp"
 
 int main(){
 
